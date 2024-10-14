@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+         .header {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 1rem;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+        }
+
+        .header .header-btn {
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            margin-right: auto; /* Aligns the button to the left */
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease;
+            background-color: #f1d503;
+        }
+
+        .header .header-btn:hover {
+            background-color: #c9a600;
+        }
+        /* Additional styles for modals and buttons */
+        .main-container {
+            padding: 2rem;
+        }
+
+        .request-box, .additional-box {
+            background-color: #f1d503;
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            margin: 1rem 0;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .request-box:hover, .additional-box:hover {
+            background-color: #c9a600;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+        }
+
+        .close-btn {
+            background: #f1d503;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background-color: #c9a600;
+        }
+
+        /* option .main-container */
+        .option-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .option-btn {
+            color: #f4f3ea;
+            padding: 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            margin: 1rem;
+            font-size: 1.2rem;
+            transition: background-color 0.3s ease;
+            flex: 1 1 30%; /* Adjust the size of the buttons */
+            position: relative; /* Required for tooltip positioning */
+            min-height: 150px; /* Optional: Set a minimum height for the box */
+            display: flex; /* Flexbox for centering text */
+            flex-direction: column; /* Stack content vertically */
+            justify-content: center; /* Center content vertically */
+        }
+        .option-btn.dark-blue{
+            background-color: #2ca1b3;
+        }
+        .option-btn.dark-blue:hover{
+            background-color: #1f7380;
+        }
+        .option-btn.purple{
+            background-color: #f68080;
+        }
+        .option-btn.purple:hover{
+            background-color: #ac5959;
+        }
+        .smallest {
+            font-size: 0.8rem; 
+            color: #f4f3ea;
+            margin-top: 0.5rem;
+            white-space: pre-line;
+            text-align: left;
+        }
+        
+        .input-container {
+            margin-bottom: 1rem;
+        }
+
+        .input-container label {
+            display: block;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .input-container input, .input-container textarea, .input-container select {
+            width: 100%;
+            padding: 0.75rem;
+            margin-top: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .input-container input[type="file"] {
+            padding: 0.5rem;
+            border: 1px solid #2ca1b3;
+        }
+
+        .submit-btn, .back-btn {
+            width: 100%;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-btn {
+            background-color: #c9302c;
+            color: black;
+            margin-top: 1rem;
+        }
+
+        .back-btn:hover {
+            background-color: #8c211e;
+        }
+
+        /* Footer Styles */
+        .footer {
+            display: flex;
+            justify-content: space-between; /* Space between the logout button and center buttons */
+            align-items: center; /* Vertically center items */
+            background-color: #f1d503;
+            padding: 1rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0px -2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer .footer-btn {
+            color: black;
+            padding: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .footer .footer-btn:hover {
+            background-color: #c9a600;
+        }
+
+        .footer .footer-btn.logout {
+            background-color: #c9302c;
+        }
+        .footer .footer-btn.logout:hover {
+            background-color: #8c211e;
+        }
+        .footer .footer-btn.blue {
+            background-color: #a3d2f9;
+        }
+        .footer .footer-btn.blue:hover {
+            background-color: #7293AE;
+        }
+        .footer .footer-btn.pink {
+            background-color: #ffaba0;
+        }
+        .footer .footer-btn.pink:hover {
+            background-color: #cc8880;
+        }
+
+        /* Container for center buttons */
+        .footer-center {
+            display: flex;
+            gap: 1rem; /* Add space between buttons */
+            
+        }
+
+
+    </style>
+</head>
+<body>
+
+        <!-- Header -->
+        <div class="header">
+            <div class="header-btn" onclick="navigateTo('settings-page.html')">
+            Settings
+            </div>
+        </div>
+
+    <div class="main-container">
+        <h2>Lost & Found & Requests</h2>
+        <p style="text-align: center;">This website will help who has lost item find their lost item more easily.</p>
+        
+        <div class="request-box" onclick="openChoiceModal()">
+            Lost? Found? Request?
+        </div>
+
+        <!-- Choice Modal -->
+        <div class="modal" id="choiceModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Select an Action</h2>
+                    <button class="close-btn" onclick="closeChoiceModal()">&times;</button>
+                </div>
+                <div class="option-container">
+                    <div class="option-btn dark-blue" onclick="openForm('lost')">
+                        Lost Item
+                        <div class="smallest">When you lose something 
+                            and want to get it back, 
+                            all you have to do is tell us.</div>
+                    </div> 
+                    <div class="option-btn purple" onclick="openForm('found')">
+                        Found Item
+                        <div class="smallest">When you find a lost item and want to send it to the owner, just tell us.</div>
+                    </div>
+                    <div class="option-btn dark-blue" onclick="openForm('request')">
+                        Request Item
+                        <div class="smallest">When you lose something and need it back right away, just tell us.<br>
+                             We’ll make an announcement and get everyone to help you find it with a bounty on whatever you want.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Modal -->
+        <div class="modal" id="formModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="formTitle">Submit Request</h2><br><br>
+                    <button class="close-btn" onclick="closeFormModal()">&times;</button>
+                </div>
+                <form id="formContent" enctype="multipart/form-data">
+                    <div class="input-container">
+                        <label for="category">Category</label>
+                        <select id="category" name="category" required>
+                            <option value="">Select a category</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="stationary">Stationary</option>
+                            <option value="clothing">Clothing</option>
+                            <option value="jewelry">Jewelry</option>
+                            <option value="wallet-bag">Wallet & Bag</option>
+                            <option value="money">Money</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="input-container">
+                        <label for="item">Item</label>
+                        <input type="text" id="item" name="item" required>
+                    </div>
+                    <div class="input-container">
+                        <label for="description">Description</label>
+                        <textarea id="description" name="description" rows="4" required></textarea>
+                    </div>
+                    <div class="input-container">
+                        <label for="picture">Upload Picture</label>
+                        <input type="file" id="picture" name="picture" accept="image/*">
+                    </div>
+                    <button type="submit" class="submit-btn">Submit Request</button>
+                    <button type="button" class="back-btn" onclick="backToChoice()">Back</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-btn logout" onclick="navigateTo('Logout.html')">
+            Logout
+        </div>
+        <div class="footer-center">
+            <div class="footer-btn blue" onclick="navigateTo('your-updates.html')">
+                Your Updates
+            </div>
+            <div class="footer-btn pink" onclick="navigateTo('daily-mission.html')">
+                Dariy Mission
+            </div>
+        </div>
+        <p>SiKumarn</p>
+    </a>
+    </div>
+
+
+    <script>
+        function openChoiceModal() {
+            document.getElementById('choiceModal').style.display = 'flex';
+        }
+
+        function closeChoiceModal() {
+            document.getElementById('choiceModal').style.display = 'none';
+        }
+
+        function openForm(action) {
+    closeChoiceModal();
+    let title = '';
+    let formAction = '';
+    let color = '';
+    let color_title = '';
+
+    switch(action) {
+        case 'lost':
+            title = 'Lost Item';
+            formAction = 'report_lost_item';
+            color = '#8ceac5';
+            color_title = '#6f5335'
+            break;
+        case 'found':
+            title = 'Found Item';
+            formAction = 'report_found_item';
+            color = '#891956';
+            color_title = '#6f5335'
+
+            break;
+        case 'request':
+            title = 'Request Item';
+            formAction = 'request_item';
+            color = '#8ceac5';
+            color_title = '#6f5335'
+
+            break;
+    }
+
+    // Update the form title and form action
+    document.getElementById('formTitle').innerText = title;
+    document.getElementById('formContent').setAttribute('action', formAction);
+
+    // Change the color of the title and buttons
+    document.getElementById('formTitle').style.color = color_title; 
+    document.querySelector('.close-btn').style.backgroundColor = color;
+    document.querySelector('.submit-btn').style.backgroundColor = color;
+    document.querySelector('label[for="category"]').style.color = color;
+    document.querySelector('label[for="item"]').style.color = color;
+    document.querySelector('label[for="description"]').style.color = color;
+
+
+    // Show the modal
+    document.getElementById('formModal').style.display = 'flex';
+}
+
+
+        function closeFormModal() {
+            document.getElementById('formModal').style.display = 'none';
+        }
+
+        function backToChoice() {
+            closeFormModal(); // Close the form modal
+            openChoiceModal(); // Reopen the choice modal
+        }
+
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+
+        document.getElementById('formContent').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            // Handle form submission logic here (e.g., send data to server)
+            
+            // Simulate form submission success and redirect to main page
+            alert('Request submitted successfully!');
+            closeFormModal(); // Close the form modal
+            // Redirect to main page
+            window.location.href = 'main-page.html';
+        });
+
+
+    </script>
+</body>
+</html>

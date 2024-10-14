@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Found Items</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+
+        .found-items-container {
+            padding: 2rem;
+        }
+
+        .found-item {
+            background-color: #f1d503;
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .found-item img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 1rem;
+        }
+
+        .item-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .item-reward, .item-location {
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .footer {
+            display: flex;
+            background-color: #f1d503;
+            padding: 1rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0px -2px 6px rgba(0, 0, 0, 0.1);
+            justify-content: space-between; /* Space between items */
+            align-items: center; /* Align items vertically centered */
+        }
+
+        .footer .footer-btn {
+            background-color: #c9302c;
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            margin: 0 0.5rem;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .footer .footer-btn:hover {
+            background-color: #8c211e;
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        h{
+            white-space: pre-line;
+            font-size: small;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container found-items-container">
+        <h2>Your updated</h2>
+        <h>Anonymous :
+            OMG, I found this Apple Watch in room 1403!!</h><br><br>
+
+        <div class="found-item" onclick="showItemDetails('item1')">
+            <img src="..\img\apple-watch.jpg" alt="Item Image">
+            <div class="found-item-details">
+                <div class="item-title">Apple Watch</div><br>
+                <div class="item-reward">Reward: $100</div>
+                <div class="item-location">Location: Room 1403</div>
+            </div>
+        </div>
+
+        <!-- More items can be added here -->
+
+        <!-- Add more found items as needed -->
+    </div>
+
+    <div class="footer">
+        <div class="footer-btn" onclick="navigateTo('main-page.html')">
+            Back to Main Page
+        </div>
+        <p>SiKumarn</p>
+
+    </div>
+    
+
+    <script>
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+    </script>
+</body>
+</html>

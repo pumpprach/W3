@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Mission</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Additional styles for modals and buttons */
+        .main-container {
+            padding: 2rem;
+        }
+
+        .mission-box {
+            background-color: #f1d503;
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            margin: 1rem 0;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .mission-box:hover {
+            background-color: #c9a600;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: #c7c4c4;
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+        }
+
+        .close-btn {
+            background: #f1d503;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background-color: #c9a600;
+        }
+
+        .mission-image {
+            width: 100%;
+            height: auto;
+            max-height: 300px;
+            object-fit: cover;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .input-container {
+            margin-bottom: 1rem;
+            display: flex;
+            flex-direction: column; /* Stack children vertically */
+            align-items: flex-start; /* Align items to the start */
+        }
+
+        .input-container label {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 0.5rem; /* Space between label and value */
+        }
+
+        .input-container p {
+            margin: 0;
+            font-size: 1rem;
+            white-space: pre-wrap; /* Allows text to wrap properly */
+            word-wrap: break-word; /* Break long words if needed */
+            background-color: white;
+            border-radius: 8px;
+            text-align: left;
+
+        }
+
+        .footer {
+            display: flex;
+            background-color: #f1d503;
+            padding: 1rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0px -2px 6px rgba(0, 0, 0, 0.1);
+            justify-content: space-between; /* Space between items */
+            align-items: center; /* Align items vertically centered */
+        }
+
+        .footer .footer-btn {
+            background-color: #c9302c;
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            margin: 0 0.5rem;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .footer .footer-btn:hover {
+            background-color: #8c211e;
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <h2>Daily Mission</h2>
+        <p>Here are the available missions for today:</p>
+        
+        <!-- Sample Mission Boxes -->
+        <div class="mission-box" onclick="showMissionInfo('mission1')">
+            Mission 1
+        </div>
+
+        <div class="mission-box" onclick="showMissionInfo('mission2')">
+            Mission 2
+        </div>
+
+        <div class="mission-box" onclick="showMissionInfo('mission3')">
+            Mission 3
+        </div>
+
+        <!-- Mission Info Modal -->
+        <div class="modal" id="missionModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="missionTitle">Mission Title</h2>
+                    <button class="close-btn" onclick="closeMissionModal()">&times;</button>
+                </div>
+                <img id="missionImage" class="mission-image" src="" alt="Mission Image">
+                <div class="input-container">
+                    <label for="bounty">Bounty:</label>
+                    <p id="bounty">Bounty Amount</p>
+                </div>
+                <div class="input-container">
+                    <label for="category">Category:</label>
+                    <p id="category">Mission Category</p>
+                </div>
+                <div class="input-container">
+                    <label for="description">Description:</label>
+                    <p id="description">Mission Description</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-btn" onclick="navigateTo('main-page.html')">
+            Back to Main Page
+        </div>
+        <p>SiKumarn</p>
+    </div>
+
+    <script>
+        function showMissionInfo(missionId) {
+            // Sample mission data
+            const missions = {
+                mission1: {
+                    title: 'Mission 1',
+                    image: '../img/iphone-518101_640.jpg',
+                    bounty: '$100',
+                    category: 'Electronics',
+                    description: 'I think I lost it in room 1804, iPhone 7 '
+                },
+                mission2: {
+                    title: 'Mission 2',
+                    image: '../img/jacket.jpg',
+                    bounty: '$200',
+                    category: 'Clothing',
+                    description: 'I cannot find my jacket last seen in room 1612'
+                },
+                mission3: {
+                    title: 'Mission 3',
+                    image: '../img/book.jpg',
+                    bounty: '$10',
+                    category: 'STATIONARY',
+                    description: 'Can you guys help me finding Math book'
+                }
+            };
+
+            // Get mission data based on id
+            const mission = missions[missionId];
+            if (mission) {
+                document.getElementById('missionTitle').innerText = mission.title;
+                document.getElementById('missionImage').src = mission.image;
+                document.getElementById('bounty').innerText = mission.bounty;
+                document.getElementById('category').innerText = mission.category;
+                document.getElementById('description').innerText = mission.description;
+                document.getElementById('missionModal').style.display = 'flex';
+            }
+        }
+
+        function closeMissionModal() {
+            document.getElementById('missionModal').style.display = 'none';
+        }
+
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+    </script>
+</body>
+</html>

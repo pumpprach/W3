@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Mali;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        /* Profile Picture Styles */
+        .profile-section {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: #f1d503;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .upload-btn {
+            display: inline-block;
+            background-color: #f1d503;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .upload-btn:hover {
+            background-color: #c9a600;
+        }
+
+        /* Language Selection Styles */
+        .setting-section {
+            margin-bottom: 2rem;
+        }
+
+        .setting-section label {
+            display: block;
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .setting-section select, .setting-section input {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            background-color: #f1d503;
+            color: white;
+            padding: 0.75rem;
+            border-radius: 4px;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .submit-btn:hover {
+            background-color: #c9a600;
+        }
+
+        /* Footer Styles */
+
+        .footer {
+            display: flex;
+            justify-content: space-between; /* Space between the logout button and center buttons */
+            align-items: center; /* Vertically center items */
+            background-color: #f1d503;
+            padding: 1rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0px -2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer .footer-btn {
+            background-color: #c9302c;
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease;
+            gap: 5 rem ;
+        }
+
+        .footer .footer-btn:hover {
+            background-color: #8c211e;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Settings Container -->
+    <div class="container">
+        <h2>Account Settings</h2>
+
+        <!-- Profile Picture Section -->
+        <div class="profile-section">
+            <div class="profile-picture">
+                <!-- Profile Picture will be shown here -->
+                <img id="profilePic" src="../img/Profile.png" alt="Profile Picture" style="width: 100%; height: 100%; border-radius: 50%;">
+            </div>
+            <label for="profilePicUpload" class="upload-btn">Upload New Picture</label>
+            <input type="file" id="profilePicUpload" accept="image/*" style="display: none;">
+        </div>
+
+        <!-- Language Selection -->
+        <div class="setting-section">
+            <label for="language">Change Language</label>
+            <select id="language" name="language">
+                <option value="en">English</option>
+                <option value="th">ภาษาไทย (Thai)</option>
+            </select>
+        </div>
+
+        <!-- Personal Information -->
+        <div class="setting-section">
+            <label for="name">Personal Information</label>
+            <input type="text" id="name" name="name" placeholder="Name - Surname" required>
+            <input type="text" id="major" name="major" placeholder="Class / Major" required>
+            <input type="email" id="email" name="email" placeholder="Student Number" required>
+            <input type="email" id="tel" name="tel" placeholder="Tel." required>
+        </div>
+
+        <!-- Reset Password -->
+        <div class="setting-section">
+            <label for="password">Reset Password</label>
+            <input type="password" id="password" name="password" placeholder="New Password" required>
+        </div>
+
+        <button class="submit-btn" type="submit">Save Changes</button><br><br><br><br><br>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-btn" onclick="navigateTo('main-page.html')">
+            Back to Main Page
+            </div>
+        <div class="footer-btn logout" onclick="logout()">
+            Logout
+        </div>
+    </div>
+    <script>
+        
+        // Handle file upload for profile picture
+        const profilePicUpload = document.getElementById('profilePicUpload');
+        const profilePic = document.getElementById('profilePic');
+
+        document.querySelector('.upload-btn').addEventListener('click', () => {
+            profilePicUpload.click();
+        });
+
+        profilePicUpload.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    profilePic.src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Simulate logout
+        function logout() {
+            alert('Logged out successfully!');
+            window.location.href = 'index.html';
+        }
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+    </script>
+
+</body>
+</html>

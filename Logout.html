@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout Confirmation</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Lucida Console, Monospace; 
+            background-color: #f4f4f4; /* Light background for the page */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .box {
+            background-color: #f1d503; /* Background color */
+            color: white; /* Text color */
+            padding: 1.5rem; /* Padding inside the box */
+            border-radius: 8px; /* Rounded corners */
+            border: 2px solid #c9a600; /* Border color */
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+            max-width: 400px; /* Maximum width of the box */
+            text-align: center; /* Center the text */
+        }
+
+        .box h1 {
+            margin-top: 0; /* Remove margin from the top of the heading */
+            white-space: pre-line; /* This property ensures text will wrap and respect new lines */
+        }
+
+        .box button {
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 1rem;
+            transition: background-color 0.3s ease;
+            margin: 0 2rem; /* Add margin between buttons */
+        }
+
+        .box button.cancel {
+            background-color: #f8f4d9;
+            color: #6f5335;
+        }
+
+        .box button.cancel:hover {
+            background-color: #f1f1f1; /* Slightly darker on hover */
+        }
+
+        .box button.ok {
+            background-color: #f03f3c; /* Red color */
+            color: white;
+        }
+
+        .box button.ok:hover {
+            background-color: #c9302c; /* Darker red on hover */
+        }
+        footer {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            padding: 10px;
+            background-color: #f1d503; /* Use the color you specified */
+            color: #000; /* Text color */
+            text-align: center;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"><br>
+        <h1>Are You Sure You <br>
+            Want to Logout?</h1><br>
+        <button class="cancel" onclick="cancelLogout()">CANCEL</button>
+        <button class="ok" onclick="confirmLogout()">OK</button>
+    </div>
+
+    <footer>
+        <p>SiKumarn</p>
+    </footer>
+
+    <script>
+        function confirmLogout() {
+            // Redirect to logout processing page or perform logout action
+            window.location.href = 'index.html'; // Replace with your logout URL
+        }
+
+        function cancelLogout() {
+            // Redirect to the previous page or home page
+            window.location.href = 'main-page.html'; // Replace with your home or previous page URL
+        }
+    </script>
+</body>
+</html>
